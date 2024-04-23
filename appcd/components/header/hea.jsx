@@ -31,7 +31,7 @@ export  const Header =({whetherdata,setcity})=>{
 return(
     <div>
         <div style={{display:"flex", alignItems:"center", justifyContent:"center",color:"#00004d", gap:"10px"}}>
-        <img src={logo} alt="logo" width="90px" />
+        <img  class="img-fluid" src={logo}  alt="logo" width="90px" />
         <h1>Wether App</h1>
 
         </div>
@@ -39,8 +39,8 @@ return(
 <input style={{width:"300px",backgroundColor:"transparent",borderRadius:"10px" ,paddingLeft:"10px",color:"black",border:"6px solid black"}} onChange={(e)=>setcity(e.target.value)} type="text" placeholder="Search" />
 
 </div>
-<div style={{display:"flex", marginTop:"50px"}}>
-    <img width={"50px"} src={location} alt="" />
+<div className="data"  style={{display:"flex", marginTop:"50px"}}>
+    <img width={"50px"}  class="img-fluid"  src={location} alt="" />
 <h1 style={{color:"white"}}>{whetherdata?.name},{whetherdata?.country}</h1>
 
 

@@ -13,3 +13,10 @@
 height: 900px;
 width: 1700px;
 }
+@media only screen and (max-width: 600px) {
+  .wether {
+    height: 500px ;
+width: 700px; 
+font-size: 10px; }
+
+}

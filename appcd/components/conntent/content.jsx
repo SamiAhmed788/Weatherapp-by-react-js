@@ -24,7 +24,7 @@ export const Content = ({ whetherdata }) => {
             emoji = cloud
             break;
         case "Overcast":
-            emoji = suncloud
+            emoji = cloud
             break;
         case "Moderate or heavy rain in area with thunder":
             emoji = umbrella
@@ -57,7 +57,7 @@ export const Content = ({ whetherdata }) => {
 
     return (
         <div style={{ marginTop: "30px", marginLeft: "30px",display:"flex" }}>
-            <img src={emoji} alt="loj" width={"200px"} />
+            <img src={emoji} alt="loj" width={"240px"} />
             <div >
             <p style={{fontSize:"55px", margin:"5px", color:"White"}}>{Math.floor(whetherdata?.feelslike_f)}<sup style={{fontSize:"25px"}}>°F | <span style={{opacity:"0.7"}}>°C</span> </sup></p>
             <p style={{fontSize:"28px",color:"white"}}>{whetherdata?.text}</p>
