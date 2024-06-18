@@ -1,47 +1,41 @@
 import { Col } from "antd";
+import React from "react";
 
-export  const UpdateForcast=({wethervalue , index})=>{
-console.log(wethervalue,"==========>");
-console.log(index,"==========>");
-    const foreCastTime = wethervalue.time.slice(wethervalue.time.lastIndexOf(" ") + 1)
+export const UpdateForcast = ({ wethervalue, index }) => {
+    const foreCastTime = wethervalue.time.slice(wethervalue.time.lastIndexOf(" ") + 1);
     const temp_c = wethervalue.temp_c;
-    const cloudInfo = wethervalue.cloud
-    console.log("ddd",cloudInfo);
     const weatherCondition = wethervalue.condition.text;
-    console.log(weatherCondition);
+
     let emoji;
     if (weatherCondition === 'Sunny') {
         emoji = '🌞'; // Sunny
-      } else if (weatherCondition === 'Patchy rain nearby') {
+    } else if (weatherCondition === 'Patchy rain nearby') {
         emoji = '🌧️'; // Rainy
-      } else if (weatherCondition === 'Partly Cloudy' || 'Cloudy') {
+    } else if (weatherCondition === 'Partly Cloudy' || weatherCondition === 'Cloudy') {
         emoji = '🌩️'; // Cloudy
-      } else if (weatherCondition === 'Overcast') {
-        emoji = '☁️'; // Snowy
-      }else if(weatherCondition === "Light rain shower"){
-        emoji = '🌦️ ' // light rain //Light drizzle
-      }else if(weatherCondition === "Light drizzle"){
-        emoji = '☔ ' // light rain //
-      }else if(weatherCondition === "Torrential rain shower"){
-        emoji = '⛈️ ' // light rain 
-      }else if(weatherCondition === "Moderate or heavy rain in area with thunder"){
-        emoji = '🌩️ ' // light rain //
-      }else if(weatherCondition === "Fog"){
-        emoji = '🌫️ ' // light rain //🌩️
-      }else {
-        emoji = '☁️'; // Snowy
-      }
+    } else if (weatherCondition === 'Overcast') {
+        emoji = '☁️'; // Overcast
+    } else if (weatherCondition === "Light rain shower") {
+        emoji = '🌦️'; // Light rain shower
+    } else if (weatherCondition === "Light drizzle") {
+        emoji = '☔'; // Light drizzle
+    } else if (weatherCondition === "Torrential rain shower") {
+        emoji = '⛈️'; // Torrential rain shower
+    } else if (weatherCondition === "Moderate or heavy rain in area with thunder") {
+        emoji = '🌩️'; // Moderate or heavy rain with thunder
+    } else if (weatherCondition === "Fog") {
+        emoji = '🌫️'; // Fog
+    } else {
+        emoji = '☁️'; // Default cloudy
+    }
 
-return(
-<> 
-<Col className="footer-col" lg={2} md={4} sm={5} xs={6} style={{marginTop:"220px",marginRight:"20px", color:"black" ,borderRadius:"20px"}} >
-                <h4 >{foreCastTime < "12:00"? foreCastTime + " AM":foreCastTime + "PM"}</h4>
-                <h1>{emoji}</h1>
-                <h4>{temp_c} °</h4>
-            </Col>
-            
-</>
-)
+    return (
+        <Col className="footer-col" lg={2} md={4} sm={5} xs={6} style={{ marginBottom: "50px", marginLeft: "20px", color: "black", borderRadius: "20px" }}>
+            <h6>{foreCastTime < "12:00" ? foreCastTime + " AM" : foreCastTime + " PM"}</h6>
+            <h5>{emoji}</h5>
+            <h6>{temp_c} °</h6>
+        </Col>
+    );
+};
 
-
-}
+export default UpdateForcast;

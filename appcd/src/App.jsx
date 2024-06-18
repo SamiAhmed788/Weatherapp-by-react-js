@@ -1,24 +1,24 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import './App.css';
+import cloudsimple from "./assets/clould.gif";
+import dizzle from "./assets/7sd5.gif";
+import halfcloudmistry from "./assets/Lx0q.gif";
+import rainning from "./assets/QAOA.gif";
+import sunny from "./assets/sunny.gif";
+import heavythunder from "./assets/OtZ (1).gif";
+import lightrain from "./assets/IxI.gif";
+import thunder3 from "./assets/N8i8.gif";
+import overcast from "./assets/7RtV.gif";
+import partly from "./assets/partlycloud.gif";
 
-import './App.css'
-import cloudsimple from "./assets/clould.gif" 
-import dizzle from "./assets/7sd5.gif"
-import halfcloudmistry from "./assets/Lx0q.gif"
-import rainning from "./assets/QAOA.gif"
-import sunny from "./assets/sunny.gif"
-import heavythunder from "./assets/OtZ (1).gif"
-import lightrain from "./assets/IxI.gif"
-import thunder3 from "./assets/N8i8.gif"
-import overcast from "./assets/7RtV.gif"
-import partly from "./assets/partlycloud.gif"
+import { Header } from '../components/header/hea';
+import { Content } from '../components/conntent/content';
+import { Fotter } from '../components/fotter/fotte';
 
-import { Header } from '../components/header/hea'
-import { Content } from '../components/conntent/content'
-import { Fotter } from '../components/fotter/fotte'
 function App() {
-  const [hour, sethour] = useState()
-  const [whetherdata, setwetherdata] = useState()
-  const [city, setcity] = useState("")
+  const [hour, setHour] = useState();
+  const [whetherdata, setWetherdata] = useState();
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     const api_key = "f7543f73e5bd430b8e7193101240902";
@@ -53,8 +53,8 @@ function App() {
           console.log(text, sunrise, sunset, hour, last_updated, feelslike_c);
           const settingHour = hour.slice(13, 23);
           console.log(settingHour);
-          sethour([...settingHour]);
-          setwetherdata({
+          setHour([...settingHour]);
+          setWetherdata({
             text,
             last_updated,
             feelslike_c,
@@ -70,65 +70,81 @@ function App() {
         });
     }
     getWeather(city);
-    console.log("cityName",city);
+    console.log("cityName", city);
   }, [city]);
 
-const wethercondition = whetherdata?.text;
-console.log(wethercondition);
+  const wethercondition = whetherdata?.text;
+  console.log(wethercondition);
 
-let bGimg;
+  let bGimg;
 
   switch (wethercondition) {
-    
     case "Rainy":
- bGimg = rainning
+      bGimg = rainning;
       break;
-      case "Sunny":
-    bGimg = sunny
-        break;
-        case "Patchy rain nearby":
-    bGimg = dizzle
-          break;
-          case "Partly Cloudy":
-   bGimg = halfcloudmistry
-            break;
-            case "Overcast":
-    bGimg = overcast
-              break; 
-      case "Moderate or heavy rain in area with thunder":
-       bGimg = thunder3
+    case "Sunny":
+      bGimg = sunny;
       break;
-      case "Light rain shower":
-        bGimg = lightrain
-       break;
-       case "Light rain":
-        bGimg = lightrain
-       break;
-       case "Light drizzle":
-        bGimg = dizzle
-       break;
-       case "Patchy light rain with thunder":
-        bGimg = thunder3
-       break;
-        case "Moderate or heavy rain with thunder":
-       bGimg = heavythunder
-      break; 
-      case "Clear":
-      bGimg = halfcloudmistry
-     break;
-  
+    case "Patchy rain nearby":
+      bGimg = dizzle;
+      break;
+    case "Partly Cloudy":
+      bGimg = halfcloudmistry;
+      break;
+    case "Overcast":
+      bGimg = overcast;
+      break;
+    case "Moderate or heavy rain in area with thunder":
+      bGimg = thunder3;
+      break;
+    case "Light rain shower":
+      bGimg = lightrain;
+      break;
+    case "Light rain":
+      bGimg = lightrain;
+      break;
+    case "Light drizzle":
+      bGimg = dizzle;
+      break;
+    case "Patchy light rain with thunder":
+      bGimg = thunder3;
+      break;
+    case "Moderate or heavy rain with thunder":
+      bGimg = heavythunder;
+      break;
+    case "Clear":
+      bGimg = halfcloudmistry;
+      break;
     default:
-bGimg = halfcloudmistry
+      bGimg = halfcloudmistry;
       break;
   }
 
   return (
-<div className='wether' style={{backgroundImage:`url(${bGimg})`,backgroundRepeat:"no-repeat",backgroundPosition:"left",backgroundSize:"contain",paddingRight:"200px"}}>
-<Header whetherdata={whetherdata} setcity={setcity}/>
-<Content  whetherdata={whetherdata} />
-<Fotter hour={hour}  />
-</div>
-  )
+    <div
+      className='weather'
+      style={{
+        backgroundImage: `url(${bGimg})`,
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        width: "100vw",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between"
+      }}
+    >
+      <Header whetherdata={whetherdata} setCity={setCity} city={city}/>
+      <Content whetherdata={whetherdata} />
+      <Fotter hour={hour} />
+    </div>
+  );
 }
 
-export default App
+export default App;
+
+
+
+
+

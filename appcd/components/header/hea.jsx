@@ -1,8 +1,9 @@
 import { useState } from "react";
 import logo from "./R-removebg-preview.png"
 import location from "./location-removebg-preview.png"
+import { Input } from "antd";
 
-export  const Header =({whetherdata,setcity})=>{
+export  const Header =({whetherdata,setCity})=>{
 
     const [currentDateVal, setCurrentDateVal] = useState()
     const currentDate = whetherdata?.last_updated.slice(0,whetherdata?.last_updated.indexOf(" "));
@@ -32,20 +33,19 @@ return(
     <div>
         <div style={{display:"flex", alignItems:"center", justifyContent:"center",color:"#00004d", gap:"10px"}}>
         <img  class="img-fluid" src={logo}  alt="logo" width="90px" />
-        <h1>Wether App</h1>
+        <h4>Weather App</h4>
 
         </div>
-<div style={{display:"flex", justifyContent:"center",marginTop:"60px",height:"45px" }}>
-<input style={{width:"300px",backgroundColor:"transparent",borderRadius:"10px" ,paddingLeft:"10px",color:"black",border:"6px solid black"}} onChange={(e)=>setcity(e.target.value)} type="text" placeholder="Search" />
+<div style={{display:"flex", justifyContent:"center",marginTop:"20px",height:"25px" }}>
+<input style={{width:"200px",backgroundColor:"transparent",borderRadius:"10px" ,paddingLeft:"10px",color:"black",border:"2px solid black"}} onChange={(e)=>setCity(e.target.value)} type="text" placeholder="Search" />
+</div>
+<div className="data"  style={{display:"flex",alignItems:"center"}}>
+    <img width={"30px"}  class="img-fluid"  src={location} alt="" />
+<h3 style={{color:"white"}}>{whetherdata?.name},{whetherdata?.country}</h3>
+
 
 </div>
-<div className="data"  style={{display:"flex", marginTop:"50px"}}>
-    <img width={"50px"}  class="img-fluid"  src={location} alt="" />
-<h1 style={{color:"white"}}>{whetherdata?.name},{whetherdata?.country}</h1>
-
-
-</div>
-<h3 style={{marginLeft:"50px",marginTop:"10px",color:"white"}}>{todayDate}</h3>
+<h5 style={{marginLeft:"50px",marginTop:"10px",color:"white"}}>{todayDate}</h5>
         </div>
 )
 
